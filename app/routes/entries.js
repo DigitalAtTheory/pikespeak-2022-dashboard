@@ -20,6 +20,7 @@ export const action = async ({ request }) => {
       await addDoc(hillCol, hillEntry);
       console.log("entry logged");
       console.log(hillEntry);
+      return;
     case "109":
       const retailCol = collection(db, "pikes-retail-2022");
       const onsiteEntry = {
@@ -31,6 +32,7 @@ export const action = async ({ request }) => {
       await addDoc(retailCol, onsiteEntry);
       console.log("entry logged");
       console.log(onsiteEntry);
+      return;
     case "108":
       const virtualEntry = {
         basicInformation: body.BasicInformation,
@@ -41,6 +43,7 @@ export const action = async ({ request }) => {
       await addDoc(retailCol, virtualEntry);
       console.log("entry logged");
       console.log(virtualEntry);
+      return;
     default:
       console.log("This from is not being tracked on this dashboard ");
   }
