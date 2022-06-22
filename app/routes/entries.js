@@ -5,7 +5,7 @@ import { db } from "../../firebase/db";
 export const action = async ({ request }) => {
   const body = await request.json();
 
-  if (body.Form.Id === "110") {
+  if (body.Form?.Id === "110") {
     const colRef = collection(db, "hill-grind-2022");
     const entry = {
       basicInformation: body.BasicInformation,
@@ -18,9 +18,6 @@ export const action = async ({ request }) => {
     addDoc(colRef, entry);
     console.log(entry);
   }
-
-  console.log("Hi server");
-  console.log(body);
 
   return json({ success: true }, 200);
 };
