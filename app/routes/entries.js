@@ -15,7 +15,9 @@ export const action = async ({ request }) => {
           : "virtual",
     };
 
-    addDoc(colRef, entry);
+    console.log("logging entry");
+    await addDoc(colRef, entry);
+    console.log("entry logged");
     console.log(entry);
   }
 
