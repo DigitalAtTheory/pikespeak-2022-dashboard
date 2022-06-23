@@ -34,13 +34,14 @@ export const action = async ({ request }) => {
       console.log(onsiteEntry);
       return;
     case "108":
+      const virtualCol = collection(db, "pikes-retail-2022");
       const virtualEntry = {
         basicInformation: body.BasicInformation,
         location: "virtual",
       };
 
       console.log("logging entry");
-      await addDoc(retailCol, virtualEntry);
+      await addDoc(virtualCol, virtualEntry);
       console.log("entry logged");
       console.log(virtualEntry);
       return;

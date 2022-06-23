@@ -5,7 +5,6 @@ import { getDocs, collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase/db";
 
 import stylesUrl from "~/styles/index.css";
-import lockup from "../../public/images/Corvette-Lockup.png";
 import Card from "../Components/Card";
 
 export const links = () => {
@@ -13,6 +12,12 @@ export const links = () => {
 };
 
 export const loader = async () => {
+  const retailOfferClicks = await getClicks("1db29ce2daa04228a5c129ae6ebe0b8e");
+  const retailGiveawayClicks = await getClicks(
+    "a6cf82d4d1614f6fb66cc3b97279829b"
+  );
+  const porscheGiveawayClicks = await getClicks();
+
   const hillCol = collection(db, "hill-grind-2022");
   const retailCol = collection(db, "pikes-retail-2022");
   const { onsite: hillOnsite, virtual: hillVirtual } = await getData(hillCol);
@@ -29,6 +34,17 @@ export const loader = async () => {
       onsite,
       virtual,
     };
+  }
+
+  async function getClicks(id) {
+    const response = await fetch(`https://api.rebrandly.com/v1/links/${id}`, {
+      headers: {
+        apikey: "eca2dec1f5f940e7844b1189c01ff2bf",
+      },
+    });
+
+    const link = await response.json();
+    return link.clicks;
   }
 
   return json({ hillOnsite, hillVirtual, retailOnsite, retailVirtual });
