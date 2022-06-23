@@ -20,7 +20,7 @@ export const action = async ({ request }) => {
       await addDoc(hillCol, hillEntry);
       console.log("entry logged");
       console.log(hillEntry);
-      return;
+      return json({ success: true }, 200);
     case "109":
       const retailCol = collection(db, "pikes-retail-2022");
       const onsiteEntry = {
@@ -32,7 +32,7 @@ export const action = async ({ request }) => {
       await addDoc(retailCol, onsiteEntry);
       console.log("entry logged");
       console.log(onsiteEntry);
-      return;
+      return json({ success: true }, 200);
     case "108":
       const virtualCol = collection(db, "pikes-retail-2022");
       const virtualEntry = {
@@ -44,7 +44,7 @@ export const action = async ({ request }) => {
       await addDoc(virtualCol, virtualEntry);
       console.log("entry logged");
       console.log(virtualEntry);
-      return;
+      return json({ success: true }, 200);
     default:
       console.log("This from is not being tracked on this dashboard ");
   }
