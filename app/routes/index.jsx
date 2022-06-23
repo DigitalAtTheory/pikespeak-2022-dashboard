@@ -59,33 +59,33 @@ export default function Index() {
   const [hillOnsiteEntries, setHillOnsiteEntries] = useState(hillOnsite);
   const [hillVirtualEntries, setHillVirtualEntries] = useState(hillVirtual);
 
-  useEffect(() => {
-    const hillCol = collection(db, "hill-grind-2022");
-    const retailCol = collection(db, "pikes-retail-2022");
+  // useEffect(() => {
+  //   const hillCol = collection(db, "hill-grind-2022");
+  //   const retailCol = collection(db, "pikes-retail-2022");
 
-    const hillLiveEntries = onSnapshot(hillCol, (querySnapshot) => {
-      const data = querySnapshot.docs.map((doc) => doc.data());
-      const onsite = data.filter((doc) => doc.location === "onsite");
-      const virtual = data.filter((doc) => doc.location === "virtual");
+  //   const hillLiveEntries = onSnapshot(hillCol, (querySnapshot) => {
+  //     const data = querySnapshot.docs.map((doc) => doc.data());
+  //     const onsite = data.filter((doc) => doc.location === "onsite");
+  //     const virtual = data.filter((doc) => doc.location === "virtual");
 
-      setHillOnsiteEntries(onsite);
-      setHillVirtualEntries(virtual);
-    });
+  //     setHillOnsiteEntries(onsite);
+  //     setHillVirtualEntries(virtual);
+  //   });
 
-    const retailLiveEntries = onSnapshot(retailCol, (querySnapshot) => {
-      const data = querySnapshot.docs.map((doc) => doc.data());
-      const onsite = data.filter((doc) => doc.location === "onsite");
-      const virtual = data.filter((doc) => doc.location === "virtual");
+  //   const retailLiveEntries = onSnapshot(retailCol, (querySnapshot) => {
+  //     const data = querySnapshot.docs.map((doc) => doc.data());
+  //     const onsite = data.filter((doc) => doc.location === "onsite");
+  //     const virtual = data.filter((doc) => doc.location === "virtual");
 
-      setRetailOnsiteEntries(onsite);
-      setRetailVirtualEntries(virtual);
-    });
+  //     setRetailOnsiteEntries(onsite);
+  //     setRetailVirtualEntries(virtual);
+  //   });
 
-    return () => {
-      hillLiveEntries();
-      retailLiveEntries();
-    };
-  }, []);
+  //   return () => {
+  //     hillLiveEntries();
+  //     retailLiveEntries();
+  //   };
+  // }, []);
 
   return (
     <div
