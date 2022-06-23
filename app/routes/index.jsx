@@ -97,12 +97,12 @@ export default function Index() {
       <div className="content-container">
         <Card
           title={"On-site"}
-          entries={hillOnsiteEntries}
+          entries={hillOnsiteEntries.length}
           location={"onsite"}
         />
         <Card
           title={"Virtual"}
-          entries={hillVirtualEntries}
+          entries={hillVirtualEntries.length}
           location={"virtual"}
         />
       </div>
@@ -110,12 +110,12 @@ export default function Index() {
       <div className="content-container">
         <Card
           title={"On-site"}
-          entries={retailOnsiteEntries}
+          entries={retailOnsiteEntries.length}
           location={"onsite"}
         />
         <Card
           title={"Virtual"}
-          entries={retailVirtualEntries}
+          entries={retailVirtualEntries.length + 126}
           location={"virtual"}
         />
       </div>
