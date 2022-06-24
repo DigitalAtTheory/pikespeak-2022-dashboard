@@ -152,7 +152,7 @@ export default function Index() {
         ]}
       />
       <CardContainer
-        heading="Pikes Peak Hill Grind"
+        heading="Pikes Peak Retail"
         cardData={[
           {
             id: Date.now() + Math.random(),
