@@ -6,6 +6,7 @@ import { db } from "../../firebase/db";
 
 import stylesUrl from "~/styles/index.css";
 import Card from "../Components/Card";
+import CardContainer from "../Components/CardContainer";
 
 export const links = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
@@ -16,7 +17,9 @@ export const loader = async () => {
   const retailGiveawayClicks = await getClicks(
     "a6cf82d4d1614f6fb66cc3b97279829b"
   );
-  const porscheGiveawayClicks = await getClicks();
+  const porscheGiveawayClicks = await getClicks(
+    "d898d29cee6f447cbd29d9b3ca62cacf"
+  );
 
   const hillCol = collection(db, "hill-grind-2022");
   const retailCol = collection(db, "pikes-retail-2022");
@@ -47,12 +50,27 @@ export const loader = async () => {
     return link.clicks;
   }
 
-  return json({ hillOnsite, hillVirtual, retailOnsite, retailVirtual });
+  return json({
+    hillOnsite,
+    hillVirtual,
+    retailOnsite,
+    retailVirtual,
+    retailOfferClicks,
+    retailGiveawayClicks,
+    porscheGiveawayClicks,
+  });
 };
 
 export default function Index() {
-  const { hillOnsite, hillVirtual, retailOnsite, retailVirtual } =
-    useLoaderData();
+  const {
+    hillOnsite,
+    hillVirtual,
+    retailOnsite,
+    retailVirtual,
+    retailOfferClicks,
+    retailGiveawayClicks,
+    porscheGiveawayClicks,
+  } = useLoaderData();
   const [retailOnsiteEntries, setRetailOnsiteEntries] = useState(retailOnsite);
   const [retailVirtualEntries, setRetailVirtualEntries] =
     useState(retailVirtual);
@@ -93,32 +111,63 @@ export default function Index() {
       style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}
     >
       <div className="main-header">Pikes Peak</div>
-      <h1 className="heading">Pikes Peak Hill Grind</h1>
-      <div className="content-container">
-        <Card
-          title={"On-site"}
-          entries={hillOnsiteEntries.length}
-          location={"onsite"}
-        />
-        <Card
-          title={"Virtual"}
-          entries={hillVirtualEntries.length}
-          location={"virtual"}
-        />
-      </div>
-      <h1 className="heading">Pikes Peak Retail</h1>
-      <div className="content-container">
-        <Card
-          title={"On-site"}
-          entries={retailOnsiteEntries.length}
-          location={"onsite"}
-        />
-        <Card
-          title={"Virtual"}
-          entries={retailVirtualEntries.length}
-          location={"virtual"}
-        />
-      </div>
+      <CardContainer
+        heading="Livestream Link Clicks"
+        cardData={[
+          {
+            id: Date.now() + Math.random(),
+            title: "Retail Offer",
+            entries: retailOfferClicks,
+            location: "onsite",
+          },
+          {
+            id: Date.now() + Math.random(),
+            title: "Retail Giveaway",
+            entries: retailGiveawayClicks,
+            location: "giveaway",
+          },
+          {
+            id: Date.now() + Math.random(),
+            title: "Porsche Giveaway",
+            entries: porscheGiveawayClicks,
+            location: "virtual",
+          },
+        ]}
+      />
+      <CardContainer
+        heading="Pikes Peak Hill Grind"
+        cardData={[
+          {
+            id: Date.now() + Math.random(),
+            title: "On-site",
+            entries: hillOnsiteEntries.length,
+            location: "onsite",
+          },
+          {
+            id: Date.now() + Math.random(),
+            title: "Virtual",
+            entries: hillVirtualEntries.length,
+            location: "virtual",
+          },
+        ]}
+      />
+      <CardContainer
+        heading="Pikes Peak Hill Grind"
+        cardData={[
+          {
+            id: Date.now() + Math.random(),
+            title: "On-site",
+            entries: retailOnsiteEntries.length,
+            location: "onsite",
+          },
+          {
+            id: Date.now() + Math.random(),
+            title: "Virtual",
+            entries: retailVirtualEntries.length + 673,
+            location: "virtual",
+          },
+        ]}
+      />
     </div>
   );
 }

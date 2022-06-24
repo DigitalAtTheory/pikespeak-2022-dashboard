@@ -77,3 +77,11 @@ body {
 .virtual > h2 {
   border-bottom: 4px solid red;
 }
+
+.giveaway {
+  border-bottom: 8px solid seagreen;
+}
+
+.giveaway > h2 {
+  border-bottom: 4px solid seagreen;
+}
